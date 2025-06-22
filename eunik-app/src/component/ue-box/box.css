@@ -1,0 +1,10 @@
+#uebox {
+    font-size: 1em;
+    display: flex;
+}
+
+#uebox-content {
+    /* display: inline-grid; */
+    display: flex;
+    gap: 0 .5em;
+}
