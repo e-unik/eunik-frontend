@@ -7,6 +7,7 @@ import Input from "../../component/ue-input/Input";
 import { useNavigate, useRoutes } from "react-router";
 import TelegramButton from "../../component/ue-telegram-button/TelegramButton";
 import Divider from "../../component/ue-divider/Divider";
+import { HOST } from "../../const/const";
 
 const loginInputRegex = /^[a-zA-Z0-9_]{0,16}$/; // todo only check spaces
 const loginSubmitRegex = /^[a-zA-Z0-9_]{3,16}$/;
@@ -32,17 +33,17 @@ export default function Login() {
   }
 
   return (
-    <Frame title='Вход'>
-      <Box direction='column'>
-        <Input onChange={onChangeLogin} value={login} fullWidth label={'логин'} />
-        <Input onChange={onChangePassword} value={password} fullWidth label={'пароль'} type="password" />
+    <Frame fullWidth maxWidth={'30em'} title='Вход'>
+      <Box fullWidth direction='column'>
+        <Input fullWidth onChange={onChangeLogin} value={login} label='логин' />
+        <Input fullWidth onChange={onChangePassword} value={password} label='пароль' type="password" />
       </Box>
-      <Box direction='column'>
+      <Box fullWidth direction='column'>
         <Button fullWidth title={'Войти'} onClick={() => console.log('test vtb ru')} />
-        <TelegramButton widgetCallbackUrl={'http://localhost:5173/tgauth/callback'} widgetCornetRadius={0} botName={'UnikEAuthBot'} fullWidth title={'Войти'} onClick={() => console.log('test vtb ru')} />
-        <Divider value={'или'}/>
-        <Button title={'Регистрация'} onClick={() => navigate('/register')} />
-        <Button title={'Сбросить пароль'} onClick={() => navigate('/help/recover')} />
+        <Button fullWidth title={'Сбросить пароль'} onClick={() => navigate('/help/recover')} />
+        <Divider value={'или'} />
+        <Button fullWidth title={'Регистрация'} onClick={() => navigate('/register')} />
+        <TelegramButton widgetCallbackUrl={`${HOST}/login/callback`} widgetCornetRadius={0} botName={'UnikEAuthBot'} title={'Войти'} onClick={() => console.log('test vtb ru')} />
       </Box>
     </Frame>
   )
