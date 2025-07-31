@@ -15,6 +15,7 @@ function runTelegramScript(bot_name) {
     script.async = true;
     script.setAttribute('data-telegram-login', bot_name);
     script.setAttribute('data-size', 'large');
+    script.setAttribute('data-radius', '0');
     script.setAttribute('data-auth-url', 'http://localhost:5173/tgauth/callback');
 
     document.getElementById('telegram-button').appendChild(script);
