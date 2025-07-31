@@ -11,7 +11,7 @@ export default function Button({
     return (
         <button
             className="uebutton"
-            style={{ ...style, flex: fullWidth ? '1 1 auto' : '0 0'  }}
+            style={{ ...style, width: fullWidth ? '100%' : ''  }}
             onClick={onClick}
         >
             <span className="uebutton-content">

@@ -1,5 +1,7 @@
 .ueframe {
     display: flex;
+    justify-content: center;
+    
     background-color: #828282;
     box-shadow: inset 8px 8px #A79C96, inset -8px -8px #50474D;
 }
