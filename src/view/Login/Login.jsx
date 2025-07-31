@@ -5,6 +5,8 @@ import Frame from "../../component/ue-frame/Frame";
 import { TelegramIcon } from "../../component/ue-icon/Icon";
 import Input from "../../component/ue-input/Input";
 import { useNavigate, useRoutes } from "react-router";
+import TelegramButton from "../../component/ue-telegram-button/TelegramButton";
+import Divider from "../../component/ue-divider/Divider";
 
 const loginInputRegex = /^[a-zA-Z0-9_]{0,16}$/; // todo only check spaces
 const loginSubmitRegex = /^[a-zA-Z0-9_]{3,16}$/;
@@ -36,11 +38,11 @@ export default function Login() {
         <Input onChange={onChangePassword} value={password} fullWidth label={'пароль'} type="password" />
       </Box>
       <Box direction='column'>
-        <Box>
-          <Button fullWidth title={'Войти'} onClick={() => console.log('test vtb ru')} />
-          <Button icon={<TelegramIcon height='1.4em' width='1.25em' />} onClick={() => console.log('test vtb ru')} />
-        </Box>
+        <Button fullWidth title={'Войти'} onClick={() => console.log('test vtb ru')} />
+        <TelegramButton widgetCallbackUrl={'http://localhost:5173/tgauth/callback'} widgetCornetRadius={0} botName={'UnikEAuthBot'} fullWidth title={'Войти'} onClick={() => console.log('test vtb ru')} />
+        <Divider value={'или'}/>
         <Button title={'Регистрация'} onClick={() => navigate('/register')} />
+        <Button title={'Сбросить пароль'} onClick={() => navigate('/help/recover')} />
       </Box>
     </Frame>
   )

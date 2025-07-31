@@ -5,6 +5,7 @@ import Frame from "../../component/ue-frame/Frame";
 import { TelegramIcon } from "../../component/ue-icon/Icon";
 import Input from "../../component/ue-input/Input";
 import { useNavigate } from "react-router";
+import Divider from "../../component/ue-divider/Divider";
 
 const loginInputRegex = /^[a-zA-Z0-9_]{0,16}$/;
 const birthdateInputRegex = /^(\d{1,2})(\.(\d{1,2})?)?(\.(\d{1,4})?)?$/
@@ -113,6 +114,7 @@ export default function Register() {
             </Box>
             <Box fullWidth direction='column'>
                 <Button title={'Зарегестрироваться'} onClick={() => console.log('test vtb ru')} />
+                <Divider value={'или'} />
                 <Button title={'Уже есть аккаунт? Войти'} onClick={() => navigate('/login')} />
             </Box>
         </Frame>
