@@ -1,0 +1,14 @@
+.uedivider {
+    display: flex;
+        align-items: center;
+    justify-content: center;
+}
+
+.uedivider-content {
+    display: flex;
+    margin-top: 1.1em;
+    margin-bottom: 0.7em;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+}
