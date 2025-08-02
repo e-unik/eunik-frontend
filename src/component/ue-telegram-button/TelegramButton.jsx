@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './telegramButton.css'
-import { getTelegramUserData, runTelegramScript } from '../../utils/tgScript';
+import { getTelegramUserData, runTelegramScript } from '../../view/Login/api/tgScript';
 
 export default function TelegramButton({
     botName,
@@ -15,7 +15,7 @@ export default function TelegramButton({
     const telegramButtonRef = useRef(null);
 
     useEffect(() => {
-        const tg_user = getTelegramUserData();
+        const tg_user = getTelegramUserData(); // todo remove this add check myself auth cookie 
         if (tg_user !== false) {
             return;
         }
