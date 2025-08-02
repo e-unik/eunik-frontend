@@ -15,7 +15,7 @@ export default function Box({
         >
             <div
                 id="uebox-content"
-                style={{ ...style, minWidth, width, flexDirection: direction, width: fullWidth ? '100%' : '' }}
+                style={{ ...style, minWidth, flexDirection: direction, width: fullWidth ? '100%' : width }}
             >
                 {children}
 
