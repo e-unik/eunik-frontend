@@ -43,7 +43,11 @@ export default function Login() {
         <Button fullWidth title={'Сбросить пароль'} onClick={() => navigate('/help/recover')} />
         <Divider value={'или'} />
         <Button fullWidth title={'Регистрация'} onClick={() => navigate('/register')} />
-        <TelegramButton widgetCallbackUrl={`${HOST}/login/callback`} widgetCornetRadius={0} botName={'UnikEAuthBot'} title={'Войти'} onClick={() => console.log('test vtb ru')} />
+        <TelegramButton
+          dataCallbackUrl={`${HOST}/login/callback`}
+          botName={'UnikEAuthBot'}
+          title={'Войти'}
+        />
       </Box>
     </Frame>
   )
