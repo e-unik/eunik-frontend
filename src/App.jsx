@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
 import Login from './view/Login/Login'
 import Register from './view/Register/Register'
-import TelegramAuth from './view/Login/LoginTelegramWidget'
+import TgCallback from './view/Login/TgCallback'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/tgauth" element={<TelegramAuth />} />
+        <Route path="/login/callback" element={<TgCallback />} />
       </Routes>
     </BrowserRouter>
   )

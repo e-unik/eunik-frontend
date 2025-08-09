@@ -2,7 +2,8 @@ import "./frame.css"
 
 export default function Frame({
     title,
-    width,
+    minWidth,
+    maxWidth,
     fullWidth = false,
     style,
     children,
@@ -10,11 +11,11 @@ export default function Frame({
     return (
         <div
             className="ueframe"
-            style={{ ...style, width: fullWidth ? "100%" : "fit-content" }}
+            style={{ ...style, minWidth: minWidth ? "" : "max-content", maxWidth: maxWidth, width: fullWidth ? "100%" : "fit-content" }}
         >
             <div
                 className="ueframe-content"
-                style={{ ...style, width }}
+                style={{ ...style, minWidth, maxWidth, width: fullWidth ? "100%" : "fit-content" }}
             >
                 <span id="ueframe-title">
                     {title}

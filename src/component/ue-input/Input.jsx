@@ -20,7 +20,7 @@ export default function Input({
     return (
         <div
             className="ueinput"
-            style={{ ...style, flex: fullWidth ? '1 1 auto' : '0 0' }}
+            style={{ ...style, width: fullWidth ? '100%' : 'unset' }}
         >
             <input
                 placeholder={`${label}${requered ? '*' : ''}`}
