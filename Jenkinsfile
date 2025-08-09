@@ -3,8 +3,8 @@ pipeline {
     environment {
         GIT_CREDENTIALS_KEY = 'eunik-git-key'
         SSH_CREDENTIALS_KEY = 'remote-server-ssh-key'
-        SSH_SERVER_USER = '	eunik-server-user'
-        SSH_SERVER_PORT = '	eunik-server-port'
+        SSH_SERVER_USER = credentials('eunik-server-user')
+        SSH_SERVER_PORT = credentials('eunik-server-port')
 
         WORK_DIRECTORY = '/eunik/frontend'
         BACKUP_DIRECTORY = '/eunik/backup/frontend'
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -p ${SSH_SERVER_PORT} ${SSH_SERVER_USER}@eunik.ru \\
+                        ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${SSH_SERVER_USER}@eunik.ru \\
                         cp -r ${env.WORK_DIRECTORY}/* ${env.BACKUP_DIRECTORY}
                     """
                 }
