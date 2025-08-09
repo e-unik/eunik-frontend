@@ -7,7 +7,7 @@ pipeline {
         SSH_SERVER_PORT = credentials('eunik-server-port')
 
         WORK_DIRECTORY = '/eunik/frontend'
-        BACKUP_DIRECTORY = '/eunik/backup/frontend'
+        BACKUP_DIRECTORY = '/eunik/backups/frontend'
     }
     
     stages {
