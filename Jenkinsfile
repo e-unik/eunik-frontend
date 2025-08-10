@@ -26,8 +26,7 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${SSH_SERVER_USER}@eunik.ru <<'EOF'
 
                         set -euo pipefail
-
-                        if [ -d "${env.WORK_DIRECTORY}"] && [ -n "$(ls -a "${env.WORK_DIRECTORY}" 2>/dev/null)" ]; then
+                        if [ -d "${env.WORK_DIRECTORY}" ] && [ -n "$(ls -a "${env.WORK_DIRECTORY}" 2>/dev/null)" ]; then
                             mkdir -p "${env.BACKUP_DIRECTORY}"
                             rm -rf -- "${env.BACKUP_DIRECTORY}"/*
                             cp -a "${env.WORK_DIRECTORY}"/. "${env.BACKUP_DIRECTORY}"/
