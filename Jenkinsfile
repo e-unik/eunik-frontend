@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
                     sh """
-                        npm run build
+                        npm ci && npm run build
                     """
                 }
             }
