@@ -36,7 +36,7 @@ pipeline {
                         else
                             echo "Нет файлов в \$SRC для бэкапа — пропуск."
                         fi
-                        EOF
+EOF
                     """
                 }
             }
