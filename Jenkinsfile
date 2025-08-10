@@ -24,15 +24,17 @@ pipeline {
                 sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
                     sh """
                         ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${SSH_SERVER_USER}@eunik.ru <<'EOF'
+                        SRC="${env.WORK_DIRECTORY}"
+                        DST="${env.BACKUP_DIRECTORY}"
 
                         set -euo pipefail
-                        if [ -d "${env.WORK_DIRECTORY}" ] && [ -n "$(ls -a "${env.WORK_DIRECTORY}" 2>/dev/null)" ]; then
-                            mkdir -p "${env.BACKUP_DIRECTORY}"
-                            rm -rf -- "${env.BACKUP_DIRECTORY}"/*
-                            cp -a "${env.WORK_DIRECTORY}"/. "${env.BACKUP_DIRECTORY}"/
-                            echo "Бэкап "${env.WORK_DIRECTORY}" выполнен в "${env.BACKUP_DIRECTORY}"."
+                        if [ -d "$SRC" ] && [ -n "$(ls -a "$SRC" 2>/dev/null)" ]; then
+                            mkdir -p "$DST"
+                            rm -rf -- "$SRC$DST"/*
+                            cp -a "$SRC"/. "$SRC$DST"/
+                            echo "Бэкап "$SRC" выполнен в "$SRC$DST"."
                         else
-                            echo "Нет файлов в "${env.WORK_DIRECTORY}" для бэкапа — пропуск."
+                            echo "Нет файлов в "$SRC" для бэкапа — пропуск."
                         fi
                         EOF
                     """
