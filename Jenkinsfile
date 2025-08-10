@@ -65,6 +65,7 @@ EOF
                 sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
                     sh """
                         cd ${env.WORK_DIRECTORY}\\
+                        npm ci && npm install\\
                         npm ci && npm run build
                     """
                 }
