@@ -28,13 +28,13 @@ pipeline {
                         DST="${env.BACKUP_DIRECTORY}"
 
                         set -euo pipefail
-                        if [ -d "$SRC" ] && [ -n "$(ls -a "$SRC" 2>/dev/null)" ]; then
-                            mkdir -p "$DST"
-                            rm -rf -- "$SRC$DST"/*
-                            cp -a "$SRC"/. "$SRC$DST"/
-                            echo "Бэкап "$SRC" выполнен в "$SRC$DST"."
+                        if [ -d "\$SRC" ] && [ -n "\$(ls -a "\$SRC" 2>/dev/null)" ]; then
+                            mkdir -p "\$DST"
+                            rm -rf -- "\$DST"/*
+                            cp -a "\$SRC"/. "\$DST"/
+                            echo "Бэкап \$SRC выполнен в \$DST."
                         else
-                            echo "Нет файлов в "$SRC" для бэкапа — пропуск."
+                            echo "Нет файлов в \$SRC" для бэкапа — пропуск."
                         fi
                         EOF
                     """
