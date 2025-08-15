@@ -14,8 +14,8 @@ export default function Error({
     return (
         <Box style={{ gap: '2em' }} fullHeight direction='column'>
             <Box style={{ gap: '0em' }} direction='column'>
-                <div style={{ fontSize: titleSize }}>{title}</div>
-                <div style={{ fontSize: commentSize }}>{comment}</div>
+                <div style={{ fontSize: titleSize, textAlign: "center" }}>{title}</div>
+                <div style={{ fontSize: commentSize, textAlign: "center" }}>{comment}</div>
             </Box>
             {buttonTitle ? <Button fullWidth title={buttonTitle} onClick={() => navigate(toPath)} /> : <></>}
         </Box>
