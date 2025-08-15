@@ -11,6 +11,11 @@
     url("./font/minecraft.ttf") format("truetype");
 }
 
+html, body, #root { 
+  height: 100%;
+  margin: 0;
+}
+
 :root {
   color: #ffffff;
   font-family: MCFont;
@@ -19,7 +24,7 @@
   letter-spacing: 0.05em;
   font-size: 1em;
 
-  background-color: #ffffff;
+  background-color: #1C1C1E;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

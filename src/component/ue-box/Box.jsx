@@ -6,12 +6,13 @@ export default function Box({
     width,
     minWidth,
     fullWidth = false,
+    fullHeight = false,
     children,
 }) {
     return (
         <div
             id="uebox"
-            style={style}
+            style={{ height: fullHeight ? '100%' : '' }}
         >
             <div
                 id="uebox-content"

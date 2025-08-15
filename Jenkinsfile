@@ -21,15 +21,12 @@ pipeline {
 
         stage('Install project modules') {
             steps {
-                sh 'ls -la'
                 sh 'npm ci'
-                sh 'ls -la'
             }
         }
         stage('Build project') {
             steps {
                 sh 'npm run build'
-                sh 'ls -la'
             }
         }
 
@@ -37,37 +34,40 @@ pipeline {
             steps {
                 sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${env.SSH_SERVER_USER}@ssh.eunik.ru '
-
-                        set -eu
-                        if [ -d "${env.WORK_DIRECTORY}" ] && [ -n "$(ls -a "${env.WORK_DIRECTORY}" 2>/dev/null)" ]; then
-                            mkdir -p "${env.BACKUP_DIRECTORY}"
-                            rm -rf -- "${env.BACKUP_DIRECTORY}"/*
-                            cp -a "${env.WORK_DIRECTORY}"/. "${env.BACKUP_DIRECTORY}"/
-                        fi
-                    '
+                        ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${env.SSH_SERVER_USER}@ssh.eunik.ru \\
+                        SRC='${env.WORK_DIRECTORY}' \\
+                        DST='${env.BACKUP_DIRECTORY}' \\
+                        '
+                            set -euo pipefail
+                            if [ -d "\$SRC" ] && [ -n "\$(ls -a "\$SRC" 2>/dev/null)" ]; then
+                                mkdir -p "\$DST"
+                                rm -rf -- "\$DST"/*
+                                cp -a "\$SRC"/. "\$DST"/
+                            fi
+                        '
+                    """
+                    
+                }
+            }
+        }
+        stage('Clear remote work directory') {
+            steps {
+                sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no -p ${env.SSH_SERVER_PORT} ${env.SSH_SERVER_USER}@eunik.ru \\
+                        rm -rf ${env.WORK_DIRECTORY}/*
                     """
                 }
             }
         }
-        // stage('Clear remote work directory') {
-        //     steps {
-        //         sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
-        //             sh """
-        //                 ssh -o StrictHostKeyChecking=no -p ${SSH_SERVER_PORT} ${SSH_SERVER_USER}@eunik.ru \\
-        //                 rm -rf ${env.WORK_DIRECTORY}/*
-        //             """
-        //         }
-        //     }
-        // }
-        // stage('Clone project to the server') {
-        //     steps {
-        //         sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
-        //             sh """
-        //                 scp -P ${SSH_SERVER_PORT} -o StrictHostKeyChecking=no -r ./* ${SSH_SERVER_USER}@eunik.ru:${env.WORK_DIRECTORY}/
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Clone project to the server') {
+            steps {
+                sshagent (credentials: [env.SSH_CREDENTIALS_KEY]) {
+                    sh """
+                        scp -P ${env.SSH_SERVER_PORT} -o StrictHostKeyChecking=no -r ./dist/* ${env.SSH_SERVER_USER}@eunik.ru:${env.WORK_DIRECTORY}/
+                    """
+                }
+            }
+        }
     }
 }
